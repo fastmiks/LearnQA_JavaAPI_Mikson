@@ -5,38 +5,41 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CookieLesson {
+public class CheckCookie {
 
     @Test
 
     public void testRestAssured() {
-        Map<String, String> data = new HashMap<>();
-        data.put("login", "secret_login2");
-        data.put("password", "secret_pass2");
-        // получим NULL если изменим на secret_login2 / secret_pass2
+        Map<String, String> data = new HashMap<>();  // положили данные в data
+        data.put("login", "secret_login"); // поставь "secret_login2" и мы получим you are not authorized
+        data.put("password", "secret_pass");
 
-        Response response = RestAssured
+        Response responseForGet = RestAssured // шлем запрос и получаем куки, ложим ответ в переменную responseForGet
                 .given()
                 .body(data)
                 .when()
                 .post("https://playground.learnqa.ru/api/get_auth_cookie")
                 .andReturn();
 
-        System.out.println("\nPretty Text:");
-        response.prettyPrint();
+        String responseCookie = responseForGet.getCookie("auth_cookie"); // получаем куки с названием "auth_cookie" и кладем в responseCookie
 
-        System.out.println("\nHeaders:");
-        Headers responseHeaders = response.getHeaders();
-        System.out.println(responseHeaders);
+        Map<String, String> cookies = new HashMap<>(); // создаем HashMap для куки авторизации
+        if(responseCookie != null){
+            cookies.put("auth_cookie", responseCookie);
+        } else {
 
-        System.out.println("\nCookies:");
-        Map<String, String> responseCookies = response.getCookies();
-        System.out.println(responseCookies);
+        }
+
+        Response responseForCheck = RestAssured
+                .given()
+                .body(data)
+                .cookies(cookies)
+                .when()
+                .post("https://playground.learnqa.ru/api/check_auth_cookie")
+                .andReturn();
+
+        responseForCheck.print();
 
 
-        /* 2 String responseCookie = response.getCookie("auth_cookie");
-        System.out.println(responseCookie);
-
-        2  */
     }
 }
