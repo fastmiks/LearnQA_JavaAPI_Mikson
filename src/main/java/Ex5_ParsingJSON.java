@@ -7,9 +7,14 @@ Ex5: Парсинг JSON
 Ответом должна быть ссылка на тест в вашем репозитории.import io.restassured.RestAssured;
  */
 
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 
 // 1)	Получить JSON в читаемом формате
@@ -22,11 +27,12 @@ public class Ex5_ParsingJSON {
                 .get("https://playground.learnqa.ru/api/get_json_homework")
                 .jsonPath();
 
-response.prettyPrint();
+        response.prettyPrint();
 
 // 2)	Вывести текст второго сообщения
 
-        ArrayList message = response.getJsonObject("messages"); // записываем в переменную объекты массива JSON"
-        System.out.println("\n"message.get(1)); // выводим 2 объект в списке
+        String message = response.getJsonObject("messages[1].message"); // идем во второй объект messages, в ключ message и записываем строку в переменную
+        System.out.println("\n" + message);
+
     }
 }
