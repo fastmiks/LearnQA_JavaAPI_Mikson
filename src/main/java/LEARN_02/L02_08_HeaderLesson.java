@@ -1,11 +1,13 @@
+package LEARN_02;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import io.restassured.http.Headers;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class HeaderLesson {
+public class L02_08_HeaderLesson {
 
     @Test
 

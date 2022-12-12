@@ -1,3 +1,5 @@
+package HOMEWORK;
+
 import org.junit.jupiter.api.Test;
 
 

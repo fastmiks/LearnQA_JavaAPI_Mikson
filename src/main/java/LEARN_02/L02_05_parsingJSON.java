@@ -1,12 +1,13 @@
+package LEARN_02;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-
- import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class parsingJSON {
+public class L02_05_parsingJSON {
 
     @Test
 

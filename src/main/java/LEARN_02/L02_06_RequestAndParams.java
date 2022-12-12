@@ -1,3 +1,5 @@
+package LEARN_02;
+
 /* Часть первая
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -30,7 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class RequestAndParams {
+public class L02_06_RequestAndParams {
 
     @Test
 
