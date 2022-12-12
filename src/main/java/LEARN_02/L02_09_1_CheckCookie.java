@@ -1,11 +1,13 @@
+package LEARN_02;
+
 import io.restassured.RestAssured;
-import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class CheckCookie {
+public class L02_09_1_CheckCookie {
 
     @Test
 

@@ -1,18 +1,21 @@
+package LEARN_02;
+
 import io.restassured.RestAssured;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class CookieLesson {
+public class L02_09_2_Cookie_Get_Auth {
 
     @Test
 
     public void testRestAssured() {
         Map<String, String> data = new HashMap<>();
-        data.put("login", "secret_login2");
-        data.put("password", "secret_pass2");
+        data.put("login", "secret_login");
+        data.put("password", "secret_pass");
         // получим NULL если изменим на secret_login2 / secret_pass2
 
         Response response = RestAssured
