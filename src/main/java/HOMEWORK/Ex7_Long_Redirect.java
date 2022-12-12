@@ -9,11 +9,10 @@ public class Ex7_Long_Redirect {
     @Test
     public void cycleGetTo200() {
 
-        int statusCode = 0;
-        int countRedirect = 0;
+        int code = 0;
         String address = "https://playground.learnqa.ru/api/long_redirect";
 
-        while (statusCode != 200) {
+        while (code != 200) {
             Response response = RestAssured
                     .given()
                     .redirects()
@@ -22,16 +21,16 @@ public class Ex7_Long_Redirect {
                     .get(address)
                     .andReturn();
             address = response.getHeader("location");
-            statusCode = response.getStatusCode();
+            code = response.getStatusCode();
 
             if (address != null) {
                 System.out.println(address); // ради интереса куда прыгает
-                System.out.println(statusCode); // для спокойствия
+                System.out.println(code);
             } else {
-                statusCode = response.getStatusCode();
+                code = response.getStatusCode();
+                System.out.println("Destination reached:" + response.getHeader("X-Host"));
             }
         }
-        System.out.println(address);
-        System.out.println(statusCode);
+        System.out.println(code);
     }
 }
