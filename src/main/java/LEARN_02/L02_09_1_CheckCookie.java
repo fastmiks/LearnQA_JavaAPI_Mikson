@@ -41,7 +41,5 @@ public class L02_09_1_CheckCookie {
                 .andReturn();
 
         responseForCheck.print();
-
-
     }
 }
