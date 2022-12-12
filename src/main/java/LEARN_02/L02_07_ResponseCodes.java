@@ -16,7 +16,7 @@ public class L02_07_ResponseCodes {
         /* четвертый 303 */
                             .given()
                             .redirects()
-                            .follow(true) // false выдаст 200
+                            .follow(false) // true выдаст 200
                             .when()
                             .get("https://playground.learnqa.ru/api/get_303")
                             .andReturn();
