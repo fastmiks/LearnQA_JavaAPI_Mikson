@@ -55,6 +55,7 @@ public class Ex8_Tokens {
                 .jsonPath();
 
         String token = createTask.get("token");
+        int sleep = createTask.getInt("seconds");
         createTask.prettyPrint();
         System.out.println("\n");
 
@@ -73,7 +74,8 @@ public class Ex8_Tokens {
 
         // 3) ждал нужное количество секунд с помощью функции time.sleep() - для этого надо сделать import time
         // time.sleep похоже в питоне?
-        Thread.sleep(18000);
+        // Thread.sleep(18000); - так на 3ку, нужно схватить время с JSON объекта а не вручную выставить
+        Thread.sleep(sleep*1000); // теперь точно на 5, да?
 
         // 4) делал бы один запрос c token ПОСЛЕ того, как задача готова
         JsonPath response = RestAssured
