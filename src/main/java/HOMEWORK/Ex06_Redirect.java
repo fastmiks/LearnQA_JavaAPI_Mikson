@@ -12,7 +12,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
-public class Ex6_Redirect {
+public class Ex06_Redirect {
 
     @Test
     public void getAddress() {

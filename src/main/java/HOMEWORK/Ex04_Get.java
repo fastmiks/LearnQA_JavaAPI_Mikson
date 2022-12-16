@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 
-public class Ex4_Get {
+public class Ex04_Get {
 
     @Test
     public void getText() {

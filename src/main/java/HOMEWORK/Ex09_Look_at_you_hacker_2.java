@@ -45,7 +45,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Ex9_Look_at_you_hacker {
+public class Ex09_Look_at_you_hacker_2 {
 
     @Test
     public void findPass() {
@@ -86,8 +86,7 @@ public class Ex9_Look_at_you_hacker {
                     .given()
                     .body(auth)
                     .when()
-                    .post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework")
-                    .andReturn();
+                    .post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework");
 
             String cookie = response.getCookie("auth_cookie");
 
@@ -95,16 +94,13 @@ public class Ex9_Look_at_you_hacker {
                     .given()
                     .cookie("auth_cookie", cookie)
                     .when()
-                    .post("https://playground.learnqa.ru/ajax/api/check_auth_cookie")
-                    .andReturn();
+                    .post("https://playground.learnqa.ru/ajax/api/check_auth_cookie");
 
 
-            System.out.println("My auth cookie is: " + cookie);
-            String answer = checkAuth.print();
+            String answer = checkAuth.asString();
 
-            if (answer.equals("You are NOT authorized")) { // оказывается строки это ссылочный тип данных ?"*№ь
-                System.out.println("Password used:" + password + "\nTry again\n");
-            } else {
+            if (!answer.equals("You are NOT authorized")) {
+                checkAuth.prettyPrint();
                 System.out.println("Password used:" + password);
                 break;
             }

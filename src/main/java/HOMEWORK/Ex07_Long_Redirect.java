@@ -15,7 +15,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
-public class Ex7_Long_Redirect {
+public class Ex07_Long_Redirect {
 
     @Test
     public void cycleGetTo200() {

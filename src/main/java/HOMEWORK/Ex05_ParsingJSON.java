@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 
 // 1)	Получить JSON в читаемом формате
-public class Ex5_ParsingJSON {
+public class Ex05_ParsingJSON {
 
     @Test
     public void parsing() {

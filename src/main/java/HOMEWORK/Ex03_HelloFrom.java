@@ -3,7 +3,7 @@ package HOMEWORK;
 import org.junit.jupiter.api.Test;
 
 
-public class Ex3_HelloFrom {
+public class Ex03_HelloFrom {
 
     @Test
     public void sayHello() {

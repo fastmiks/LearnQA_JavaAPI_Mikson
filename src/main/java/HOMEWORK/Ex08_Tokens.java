@@ -29,13 +29,12 @@ package HOMEWORK;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Ex8_Tokens {
+public class Ex08_Tokens {
     @Test
     public void myJob() throws InterruptedException {
 
