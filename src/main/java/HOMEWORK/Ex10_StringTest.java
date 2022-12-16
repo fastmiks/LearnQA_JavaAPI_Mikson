@@ -18,21 +18,21 @@ public class Ex10_StringTest {
 
     @Test
     public void testPoem1() {
-        assertTrue(poem[0].length()>minValue-1, "Строчка меньше 15 символов");
+        assertTrue(poem[0].length()>minValue-1, "Строчка больше 15 символов");
     }
 
     @Test
     public void testPoem2() {
-        assertTrue(poem[1].length()>minValue-1, "Строчка меньше 15 символов");
+        assertTrue(poem[1].length()>minValue-1, "Строчка больше 15 символов");
     }
 
     @Test
     public void testPoem3() {
-        assertTrue(poem[2].length()>minValue-1, "Строчка меньше 15 символов");
+        assertTrue(poem[2].length()>minValue-1, "Строчка больше 15 символов");
     }
 
     @Test
     public void testPoem4() {
-        assertTrue(poem[3].length()>minValue-1, "Строчка меньше 15 символов");
+        assertTrue(poem[3].length()>minValue-1, "Строчка больше 15 символов");
     }
 }

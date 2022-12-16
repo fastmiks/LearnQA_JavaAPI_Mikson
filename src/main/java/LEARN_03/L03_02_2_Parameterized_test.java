@@ -17,7 +17,7 @@ public class L03_02_2_Parameterized_test {
     @ValueSource(strings = {"", "John", "Pete"}) // отсюда будем брать эти самые параметры для теста
 
     public void testHelloMethodWithoutName(String name) { //Именно сюда будут передаваться наши параметры
-        Map<String, String> queryParams = new HashMap<>(); // создаем пустой HashMap, в котором будут хранится параметры
+        Map<String, String> queryParams = new HashMap<>(); // создаем пустой HashMap, в котором будут храниться параметры
 
         if (name.length() > 0) {
             queryParams.put("name", name); // добавляем имя в качестве параметра
@@ -30,7 +30,7 @@ public class L03_02_2_Parameterized_test {
                 .jsonPath();
 
         String answer = response.getString("answer");
-        String expectedName = (name.length() > 0) ? name: "someone"; // собираем строку с ожидаемым результатом (это IF только в другом виде - тернарный оператор)
+        String expectedName = (name.length() > 0) ? name: "someone2"; // собираем строку с ожидаемым результатом (это IF только в другом виде - тернарный оператор)
         assertEquals("Hello, " + expectedName, answer, "The answer is not expected");
 
     }
