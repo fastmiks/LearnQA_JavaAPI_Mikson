@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class L03_01_3_JUnit {
 // now both tests pass
     @Test
-    public void test202() {
+    public void test200() {
         Response response = RestAssured
                 .get("https://playground.learnqa.ru/api/map")
                 .andReturn();
