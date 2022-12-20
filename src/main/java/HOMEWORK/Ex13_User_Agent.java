@@ -1,3 +1,4 @@
+//ДРАФТ
 package HOMEWORK;
 
 import io.restassured.RestAssured;
