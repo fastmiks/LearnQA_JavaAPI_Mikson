@@ -23,11 +23,13 @@ public class Ex11_WhatCookie {
 
     @Test
     public void cookieExists() {
+
         assertFalse(this.response.getCookies().isEmpty(), "There are no cookies in here");
     }
 
     @Test
     public void cookieHasValue() {
+
         Map<String, String> cookiesFromURI = this.response.getCookies();
         String cookieName = cookiesFromURI.keySet().toString();
         String cookieValue = cookiesFromURI.values().toString();
@@ -36,6 +38,11 @@ public class Ex11_WhatCookie {
 
         assertEquals(expectedValue, cookieValue, "Cookie has no value");
 
-        System.out.println("Cookie with name: " + cookieName.replaceAll("[\\[\\]]", "") + " has value: " + cookieValue.replaceAll("[\\[\\]]", ""));
+        System.out.println(
+                "Cookie with name: "
+                        + cookieName.replaceAll("[\\[\\]]", "")
+                        + " has value: "
+                        + cookieValue.replaceAll("[\\[\\]]", "")
+        );
     }
 }
