@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Ex11_WhatCookie {
 
-    String uri = "https://playground.learnqa.ru/api/homework_cookie";
+    String url = "https://playground.learnqa.ru/api/homework_cookie";
     String cookie;
-    Response response = RestAssured.get(uri);
+    Response response = RestAssured.get(url);
 
 
     @Test
@@ -36,6 +36,6 @@ public class Ex11_WhatCookie {
 
         assertEquals(expectedValue, cookieValue, "Cookie has no value");
 
-        System.out.println("Cookie with name " + cookieName + " has value: " + cookieValue);
+        System.out.println("Cookie with name: " + cookieName.replaceAll("[\\[\\]]", "") + " has value: " + cookieValue.replaceAll("[\\[\\]]", ""));
     }
 }
