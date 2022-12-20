@@ -26,11 +26,15 @@ public class Ex12_WhatHeader {
             String headerName = header.getName();
             someMap.put((headerName), "");
         }
-
+        // Предположим у нас в ТЗ есть список заголовков, сверим этот список с реальным
         String[] keys = someMap.keySet().toArray(new String[0]);
-        String[] headersFromDoc = {"Keep-Alive", "Server", "Cache-Control", "Connection", "Expires", "Content-Length", "Date"};
-        // test if true below
-        // String[] headersFromDoc = {"Keep-Alive", "Server", "Cache-Control", "Connection", "Expires", "x-secret-homework-header", "Content-Length", "Date", "Content-Type"};
+        String[] headersFromDoc = {
+                "Keep-Alive", "Server", "Cache-Control", "Connection", "Expires", "Content-Length", "Date"
+        };
+        // line below to pass the test
+        /* String[] headersFromDoc = {
+        "Keep-Alive", "Server", "Cache-Control", "Connection", "Expires", "x-secret-homework-header", "Content-Length", "Date", "Content-Type"
+        }; */
 
         HashSet<String> headersNotInDoc = new HashSet<String>(Arrays.asList(keys));
         headersNotInDoc.removeAll(Arrays.asList(headersFromDoc));
