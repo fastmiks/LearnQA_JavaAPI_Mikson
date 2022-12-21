@@ -45,4 +45,12 @@ public class Ex11_WhatCookie {
                         + cookieValue.replaceAll("[\\[\\]]", "")
         );
     }
+
+    @Test
+    public void cookieValueIsGood() {
+        Map<String, String> cookiesFromURI = this.response.getCookies();
+        String cookieValue = cookiesFromURI.values().toString();
+
+        assertEquals("hw_value", cookieValue.replaceAll("[\\[\\]]", ""), "cookie value is not like in homework");
+    }
 }
