@@ -30,9 +30,9 @@ public class Ex11_WhatCookie {
     @Test
     public void cookieHasValue() {
 
-        Map<String, String> cookiesFromURI = this.response.getCookies();
-        String cookieName = cookiesFromURI.keySet().toString();
-        String cookieValue = cookiesFromURI.values().toString();
+        Map<String, String> cookiesFromURL = this.response.getCookies();
+        String cookieName = cookiesFromURL.keySet().toString();
+        String cookieValue = cookiesFromURL.values().toString();
 
         String expectedValue = (cookieValue.length() > 0) ? cookieValue : "";
 
@@ -48,8 +48,8 @@ public class Ex11_WhatCookie {
 
     @Test
     public void cookieValueIsGood() {
-        Map<String, String> cookiesFromURI = this.response.getCookies();
-        String cookieValue = cookiesFromURI.values().toString();
+        Map<String, String> cookiesFromURL = this.response.getCookies();
+        String cookieValue = response.getCookie("Homework");
 
         assertEquals("hw_value", cookieValue.replaceAll("[\\[\\]]", ""), "cookie value is not like in homework");
     }

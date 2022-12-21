@@ -30,16 +30,17 @@ public class Ex12_WhatHeader {
     public void checkHeaders() {
 
         List<Header> headerList = this.response.getHeaders().asList();
-        Map<String, String> someMap = new HashMap<>();
 
+        Map<String, String> someMap = new HashMap<>();
         for (Header header : headerList) {
             String headerName = header.getName();
             someMap.put((headerName), "");
         }
+
         // Предположим у нас в ТЗ есть список заголовков, сверим этот список с реальным
         String[] keys = someMap.keySet().toArray(new String[0]);
         String[] headersFromDoc = {
-                "Keep-Alive", "Server", "Cache-Control", "Connection", "Expires", "Content-Length", "Date"
+                "Keep-Alive", "Server", "Cache-Control", "Connection", "Expires", "Content-Type", "Content-Length", "Date"
         };
         // line below to pass the test
         /* String[] headersFromDoc = {
@@ -50,6 +51,8 @@ public class Ex12_WhatHeader {
         headersNotInDoc.removeAll(Arrays.asList(headersFromDoc));
         Object [] myArr = headersNotInDoc.toArray();
 
+        System.out.println("We have following headers: " + someMap.keySet() + "\n");
+
         for (int i = 0; i < myArr.length; i++) {
             Headers headers = this.response.getHeaders();
             String badHeader = myArr[i].toString();
@@ -58,6 +61,7 @@ public class Ex12_WhatHeader {
         }
 
         assertEquals(keys.length, headersFromDoc.length, "Response has additional headers: " + headersNotInDoc);
+        assertEquals("Some secret value", someMap.values());
 
     }
 }
