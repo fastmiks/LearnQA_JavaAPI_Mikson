@@ -9,7 +9,6 @@ package HOMEWORK;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,9 +47,8 @@ public class Ex11_WhatCookie {
 
     @Test
     public void cookieValueIsGood() {
-        Map<String, String> cookiesFromURL = this.response.getCookies();
-        String cookieValue = response.getCookie("Homework");
 
+        String cookieValue = response.getCookie("Homework");
         assertEquals("hw_value", cookieValue.replaceAll("[\\[\\]]", ""), "cookie value is not like in homework");
     }
 }
