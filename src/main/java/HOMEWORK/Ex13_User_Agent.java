@@ -24,9 +24,12 @@ public class Ex13_User_Agent {
         String browserFromResponse = response.get("browser");
         String deviceFromResponse = response.get("device");
 
-        assertTrue(platformFromResponse.equals(platformFromFile), String.format("Expected platform: '%s'\n " + "Actual platform: '%s'", platformFromResponse, platformFromFile));
-        assertTrue(browserFromResponse.equals(browserFromFile), String.format("Expected browser: '%s'\n " + "Actual browser: '%s'", browserFromResponse, browserFromFile));
-        assertTrue(deviceFromResponse.equals(deviceFromFile), String.format("Expected device: '%s'\n " + "Actual device: '%s'", deviceFromResponse, deviceFromFile));
+        assertTrue(
+                platformFromFile.equals(platformFromResponse) && browserFromFile.equals(browserFromResponse) && deviceFromFile.equals(deviceFromResponse),
+                String.format("\nValues from response: 'platform': '%s', 'browser': '%s', 'device': '%s'" +
+                                "\nDo not match expected values from data.txt: 'platform': '%s', 'browser': '%s', 'device': '%s'",
+                        platformFromResponse, browserFromResponse, deviceFromResponse, platformFromFile, browserFromFile, deviceFromFile)
+        );
 
     }
 }
