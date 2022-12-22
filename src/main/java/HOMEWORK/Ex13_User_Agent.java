@@ -29,7 +29,7 @@ public class Ex13_User_Agent {
         assertEquals(browserFromFile, browserFromResponse, String.format("\nUser agent: '%s' \nreturns unexpected browser value", userAgent));
         assertEquals(deviceFromFile, deviceFromResponse, String.format("\nUser agent: '%s' \nreturns unexpected device value", userAgent));
 
-        /* предыдущий неверный вариант, брал все три значения вместе и не было понятно, где именно ошибка
+        /* предыдущий неверный вариант
         assertTrue(
                 platformFromFile.equals(platformFromResponse) && browserFromFile.equals(browserFromResponse) && deviceFromFile.equals(deviceFromResponse),
                 String.format(
