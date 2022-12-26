@@ -18,6 +18,13 @@ import lib.Assertions; // добавили
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import org.junit.jupiter.api.DisplayName;
+
+@Epic("Authorization cases")
+@Feature("Authorization")
 public class UserAuthTest extends BaseTestCase { // с исправлениями с лекции 3-7
 
     String cookie;
@@ -42,6 +49,8 @@ public class UserAuthTest extends BaseTestCase { // с исправлениям�
     }
 
     @Test
+    @Description("This test successfully authorize user by email and password")
+    @DisplayName("Test positive auth user")
     public void testAuthUser() {
 
         Response responseCheckAuth = RestAssured // JsonPath => Response
@@ -55,6 +64,8 @@ public class UserAuthTest extends BaseTestCase { // с исправлениям�
         Assertions.assertJsonByName(responseCheckAuth, "user_id", this.userIdOnAuth);
     }
 
+    @Description("This test checks authorization status w/o sending auth cookie or token")
+    @DisplayName("Test negative auth user")
     @ParameterizedTest
     @ValueSource(strings = {"cookie", "headers"})
 

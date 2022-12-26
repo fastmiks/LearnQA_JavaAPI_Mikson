@@ -18,11 +18,15 @@ public class UserRegisterTest extends BaseTestCase {
         String email = "vinkotov@example.com";
 
         Map<String,String> userData = new HashMap<>();
-        userData.put("email", email);
+        userData.put("email", email); // этот параметр взят со строки выше, остальные параметры сгенерированы
+        userData = DataGenerator.getRegistrationData(userData);
+
+        /* упраздняется после лекции 4-4, где мы создали метод генерации данных в классе DataGenerator
         userData.put("password", "123");
         userData.put("username", "leanqa");
         userData.put("firstName", "leanqa");
         userData.put("lastName", "leanqa");
+        */
 
         Response responseCreateAuth = RestAssured
                 .given()
@@ -41,12 +45,16 @@ public class UserRegisterTest extends BaseTestCase {
     public void testCreateUserSuccessfully() {
         String email = DataGenerator.getRandomEmail();
 
+        Map<String,String> userData = DataGenerator.getRegistrationData();
+
+        /* упраздняется после лекции 4-4, где мы создали метод генерации данных в классе DataGenerator
         Map<String,String> userData = new HashMap<>();
         userData.put("email", email);
         userData.put("password", "123");
         userData.put("username", "leanqa");
         userData.put("firstName", "leanqa");
         userData.put("lastName", "leanqa");
+         */
 
         Response responseCreateAuth = RestAssured
                 .given()
@@ -56,6 +64,6 @@ public class UserRegisterTest extends BaseTestCase {
 
         Assertions.assertResponseCodeEquals(responseCreateAuth, 200);
         // заменили это на строчку ниже, после создания метода в Assertions | System.out.println(responseCreateAuth.asString());
-        Assertions.assertJsonHasKey(responseCreateAuth, "id");
+        Assertions.assertJsonHasField(responseCreateAuth, "id");
     }
 }
