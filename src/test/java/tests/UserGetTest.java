@@ -123,7 +123,9 @@ public class UserGetTest extends BaseTestCase {
 
         if (createdUserId != random_int) {
             System.out.println("user_id: " + random_int + " " + responseGetAnotherUserData.asString());
+            String[] unexpectedFieldNames = {"firstName", "lastName", "email"};
             Assertions.assertJsonHasField(responseGetAnotherUserData, "username");
+            Assertions.assertJsonHasNotFields(responseGetAnotherUserData, unexpectedFieldNames);
         } else {
             System.out.println("Lucky you, got the same user id as random, run the test again");
         }
