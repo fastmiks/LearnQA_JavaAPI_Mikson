@@ -1,5 +1,8 @@
 package lib;
 
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,4 +40,5 @@ public class DataGenerator {
         }
         return userData;
     }
+
 }

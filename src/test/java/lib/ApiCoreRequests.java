@@ -3,11 +3,13 @@ package lib;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.Header;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 
 public class ApiCoreRequests {
     @Step("Make a GET-request with token and auth cookie")
@@ -37,6 +39,7 @@ public class ApiCoreRequests {
                 .get(url)
                 .andReturn();
     }
+
 
     @Step("Make a POST-request")
     public Response makePostRequest(String url, Map<String, String> authData) {
