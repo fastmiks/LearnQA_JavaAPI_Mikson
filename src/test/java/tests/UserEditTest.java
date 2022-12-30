@@ -252,4 +252,5 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertJsonByName(responseUserData, "firstName", newUserData.get("firstName"));
     }
 
+
 }
