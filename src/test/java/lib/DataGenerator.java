@@ -1,6 +1,8 @@
 package lib;
 
 import io.restassured.RestAssured;
+import lib.BaseTestCase;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.text.SimpleDateFormat;
@@ -8,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataGenerator {
+
     public static String getRandomEmail() {
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
         return "learnqa" + timestamp + "@example.com";

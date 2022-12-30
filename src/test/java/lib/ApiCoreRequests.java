@@ -6,6 +6,7 @@ import io.restassured.http.Header;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -40,13 +41,54 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-
     @Step("Make a POST-request")
     public Response makePostRequest(String url, Map<String, String> authData) {
         return given()
                 .filter(new AllureRestAssured())
                 .body(authData)
                 .post(url)
+                .andReturn();
+    }
+
+    @Step("Make a POST-request to create user")
+    public JsonPath makePostRequestToCreateUser (String url, Map<String, String> userData) {
+        return given()
+                .filter(new AllureRestAssured())
+                .body(userData)
+                .post("https://playground.learnqa.ru/api/user/")
+                .jsonPath();
+    }
+    // Ex17
+    @Step("Make a POST-request to authorize user")
+    public Response makePostRequestToAuthUser (String email, String password) {
+        Map<String, String> authData = new HashMap<>();
+        authData.put("email", email);
+        authData.put("password", password);
+
+        return  given()
+                .filter(new AllureRestAssured())
+                .body(authData)
+                .post("https://playground.learnqa.ru/api/user/login")
+                .andReturn();
+    }
+
+    @Step("Make a PUT-request WITH token and cookie")
+    public Response makePutRequest(String url, Map<String, String> editData, String token, String cookie) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .body(editData)
+                .put(url)
+                .andReturn();
+    }
+
+    @Step("Make a PUT-request WITHOUT token and auth cookie")
+    public Response makePutRequestWithoutTokenAndCookie(String url, Map<String, String> editData) {
+        return given()
+                .filter(new AllureRestAssured())
+                .body(editData)
+                .put(url)
                 .andReturn();
     }
 

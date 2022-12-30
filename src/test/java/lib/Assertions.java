@@ -7,6 +7,7 @@ import java.util.Arrays;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class Assertions {
 
@@ -27,6 +28,13 @@ public class Assertions {
 
         String value = Response.jsonPath().getString(name);
         assertEquals(expectedValue, value, "JSON value is not equal expected value"); // вместо возвращения значения, мы сравниваем полученное с ожидаемым
+    }
+
+    public static void assertJsonNotEqualsByName(Response Response, String name, String expectedValue) {
+        Response.then().assertThat().body("$", hasKey(name));
+
+        String value = Response.jsonPath().getString(name);
+        assertNotEquals(expectedValue, value, "JSON value is equal to expected value"); // вместо возвращения значения, мы сравниваем полученное с ожидаемым
     }
 
      public static void assertResponseTextEquals(Response Response, String expectedAnswer) {
@@ -67,7 +75,7 @@ public class Assertions {
      public static void assertJsonHasNotField(Response Response, String unexpectedFieldName) {
          Response.then().assertThat().body("$", not(hasKey(unexpectedFieldName)));
      }
-    // Ex16
+
     public static void assertJsonHasNotFields(Response response, String[] unexpectedFieldNames) {
         for (String unexpectedFieldName : unexpectedFieldNames) {
             Assertions.assertJsonHasNotField(response, unexpectedFieldName);

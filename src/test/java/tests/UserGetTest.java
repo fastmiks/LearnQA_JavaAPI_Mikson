@@ -80,7 +80,7 @@ public class UserGetTest extends BaseTestCase {
     @Description("This test gets user information with auth as different, the result should be JSON with username only")
     @DisplayName("Test get user info, auth as different user")
     public void testGetUserDetailsAuthAsDifferentUser () {
-        // для универсальности теста, нужно логиниться новым рандомным пользователем
+        // TO MAKE TEST UNIVERSAL: CREATE NEW USER AND LOGIN
         Map<String, String> generatedUserData = DataGenerator.getRegistrationData();
 
         Response responseCreateAuthWithGenUser = apiCoreRequests
@@ -106,7 +106,7 @@ public class UserGetTest extends BaseTestCase {
         String cookie = this.getCookie(responseLoginWithGenUser, "auth_sid");
         int random_int = (int)Math.floor(Math.random()*(50000-11+1)+11);
 
-        // И новый пользователь просит данные у случайного пользователя с ID от 11 до 50000
+        // NEW LOGGED IN USER GETS DATA FROM RANDOM USER WITH ID FROM 11 TO 50000
         Response responseGetAnotherUserData = apiCoreRequests
                 .makeGetRequest(
                         "https://playground.learnqa.ru/api/user/" + random_int,
