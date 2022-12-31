@@ -1,20 +1,23 @@
 package tests;
 
-import io.qameta.allure.Description;
+import io.qameta.allure.*;
+
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
 import java.util.Map;
 
+@Owner("Aleksejs Miksons")
+@Epic("User dashboard basic functionality testing")
+@Feature("Delete user data")
 public class UserDeleteTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
     String userUrl = "https://playground.learnqa.ru/api/user/";
@@ -22,6 +25,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("Check that you cannot delete user with id #2")
     @DisplayName("Test negative, delete user id 2")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("TL-53")
     public void testDeleteUserId2 () {
         //LOGIN AS KOT
         Response responseCreateAuthKot = apiCoreRequests
@@ -61,6 +66,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("Check if you can generate new user and then delete it")
     @DisplayName("Test positive, create and delete user")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-53")
     public void testCreateNewUserThenDeleteThisUser () {
         //CREATE NEW USER
         Map<String, String> newUserData = DataGenerator.getRegistrationData();
@@ -107,6 +114,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("Check if you can generate new user and then delete it with another authorized user")
     @DisplayName("Test negative, create user and delete it with another")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("TL-53")
     public void testCreateNewUserThenDeleteItWithAnotherUser () {
         //CREATE NEW USER ONE
         Map<String, String> dataUserOne = DataGenerator.getRegistrationData();

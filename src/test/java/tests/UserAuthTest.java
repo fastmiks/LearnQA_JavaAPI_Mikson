@@ -1,13 +1,19 @@
 package tests;
 
+import io.qameta.allure.*;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.response.Response;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,15 +22,8 @@ import lib.BaseTestCase;
 import lib.Assertions; // добавили
 import lib.ApiCoreRequests; // добавили в 4-5
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import org.junit.jupiter.api.DisplayName;
-
-@Epic("Authorization cases")
+@Owner("Aleksejs Miksons")
+@Epic("User dashboard basic functionality testing")
 @Feature("Authorization")
 public class UserAuthTest extends BaseTestCase { // с исправлениями с лекции 3-7
 
@@ -61,6 +60,8 @@ public class UserAuthTest extends BaseTestCase { // с исправлениям�
     @Test
     @Description("This test successfully authorize user by email and password")
     @DisplayName("Test positive auth user")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @TmsLink("TL-043")
     public void testAuthUser() {
 
         Response responseCheckAuth = apiCoreRequests
@@ -84,6 +85,8 @@ public class UserAuthTest extends BaseTestCase { // с исправлениям�
 
     @Description("This test checks authorization status w/o sending auth cookie or token")
     @DisplayName("Test negative auth user")
+    @Severity(value = SeverityLevel.NORMAL)
+    @TmsLink("TL-044")
     @ParameterizedTest
     @ValueSource(strings = {"cookie", "headers"})
 

@@ -1,24 +1,27 @@
 package tests;
 
+import io.qameta.allure.*;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
 
-import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import io.qameta.allure.Description;
-import org.junit.jupiter.api.DisplayName;
-
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
+@Owner("Aleksejs Miksons")
+@Epic("User dashboard basic functionality testing")
+@Feature("Editing user data")
 public class UserEditTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
@@ -26,6 +29,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test creates user, then does login action, edits name, and finally gets name from Response and compares it with")
     @DisplayName("Test edit user info, auth as same user")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("TL-046")
     public void testEditJustCreatedTest() {
         // GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -80,6 +85,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Change user data without being authorized")
     @DisplayName("Test negative, edit user info, no auth")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("TL-047")
     public void testEditUserNoAuth () {
 
         String newUsername = "newLearnQA";
@@ -105,6 +112,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Change user data while being authorized as different user")
     @DisplayName("Test negative, edit user info, auth as different user")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("TL-047")
     public void testEditUserDataAuthAsDiffUser() {
         // CREATE NEW USER
         Map<String, String> newUserData = DataGenerator.getRegistrationData();
@@ -159,6 +168,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Change user email to email without @ symbol, while being authorized as the same user")
     @DisplayName("Test negative, change user email to email without @")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-048")
     public void testChangeUserEmailToInvalid() {
         //CREATE USER
         Map<String, String> newUserData = DataGenerator.getRegistrationData();
@@ -207,6 +218,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Change user first name to a name containing only one character")
     @DisplayName("Test negative, change user name to one char")
+    @Severity(SeverityLevel.TRIVIAL)
+    @TmsLink("TL-047")
     public void testChangeFirstNameToOneChar() {
         //CREATE USER
         Map<String, String> newUserData = DataGenerator.getRegistrationData();

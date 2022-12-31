@@ -1,28 +1,34 @@
 package tests;
 
+import io.qameta.allure.*;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
-import io.qameta.allure.Description;
 import lib.DataGenerator;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Owner("Aleksejs Miksons")
+@Epic("User dashboard basic functionality testing")
+@Feature("Reading user data")
 public class UserGetTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
-    // Просмотр пользователя БЕЗ авторизации - ы получили только username
+    // Просмотр пользователя БЕЗ авторизации - мы получили только username
     @Test
     @Description("This test gets user information without auth, the result should be just JSON with username")
     @DisplayName("Test get user info, no auth")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-045")
     public void testGetUserDataNotAuth() {
         Response responseUserData = RestAssured
                 .get("https://playground.learnqa.ru/api/user/2")
@@ -38,6 +44,8 @@ public class UserGetTest extends BaseTestCase {
     @Test
     @Description("This test gets user information with auth as same user, the result should be JSON with all user data")
     @DisplayName("Test get user info, auth as same user")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-046")
     public void testGetUserDetailsAuthAsSameUser () {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
@@ -79,6 +87,8 @@ public class UserGetTest extends BaseTestCase {
     @Test
     @Description("This test gets user information with auth as different, the result should be JSON with username only")
     @DisplayName("Test get user info, auth as different user")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-045")
     public void testGetUserDetailsAuthAsDifferentUser () {
         // TO MAKE TEST UNIVERSAL: CREATE NEW USER AND LOGIN
         Map<String, String> generatedUserData = DataGenerator.getRegistrationData();

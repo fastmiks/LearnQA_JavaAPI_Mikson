@@ -1,7 +1,14 @@
 package tests;
 
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import lib.Assertions;
 import lib.BaseTestCase;
@@ -10,20 +17,12 @@ import lib.ApiCoreRequests;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Description;
-import org.junit.jupiter.api.DisplayName;
-
-
-@Epic("Registration cases")
-@Feature("Registration")
+@Owner("Aleksejs Miksons")
+@Epic("User dashboard basic functionality testing")
+@Feature("User registration")
 public class UserRegisterTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
@@ -31,6 +30,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test tries to create user with existing email")
     @DisplayName("Test negative create user")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("TL-049")
     public void testCreateUserWithExistingEmail() {
         String email = "vinkotov@example.com";
 
@@ -63,6 +64,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test tries to create user with generated email")
     @DisplayName("Test positive create user")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("TL-050")
     public void testCreateUserSuccessfully() {
         String email = DataGenerator.getRandomEmail();
 
@@ -93,6 +96,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test tries to create user with generated email, but no @ symbol")
     @DisplayName("Test negative create user, invalid mail")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-050")
     public void testCreateUserWithInvalidEmail() {
 
         String email = DataGenerator.getRandomEmail().replace("@", "");
@@ -115,9 +120,11 @@ public class UserRegisterTest extends BaseTestCase {
     // - Создание пользователя без указания одного из полей - с помощью @ParameterizedTest необходимо проверить,
     // что отсутствие любого параметра не дает зарегистрировать пользователя
     @ParameterizedTest
+    @ValueSource(strings = {"email", "password", "username", "firstName", "lastName"})
     @Description("This test tries to create user with generated email, but missing one of each fields")
     @DisplayName("Test negative create user, missing field")
-    @ValueSource(strings = {"email", "password", "username", "firstName", "lastName"})
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("TL-050")
     public void testCreateUserMissingRequiredFields(String field) {
 
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -137,6 +144,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test tries to create user with generated email, but with first name field being too short")
     @DisplayName("Test negative create user, first name check")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-050")
     public void testCreateUserWithOneCharFirstName() {
 
         String firstNameTooShort = RandomStringUtils.randomAlphanumeric(1);
@@ -159,6 +168,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test tries to create user with generated email, but with username field being too long")
     @DisplayName("Test negative create user, username length check")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TL-050")
     public void testCreateUserWithInvalidUsername() {
 
         String usernameTooLong = RandomStringUtils.randomAlphanumeric(251);
