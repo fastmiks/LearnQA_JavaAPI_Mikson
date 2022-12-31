@@ -108,12 +108,12 @@ public class UserEditTest extends BaseTestCase {
     public void testEditUserDataAuthAsDiffUser() {
         // CREATE NEW USER
         Map<String, String> newUserData = DataGenerator.getRegistrationData();
-        JsonPath responseCreateAuth = apiCoreRequests
+        JsonPath responseCreateUser = apiCoreRequests
                 .makePostRequestToCreateUser(
                         "https://playground.learnqa.ru/api/user/",
                         newUserData
                 );
-        String userId = responseCreateAuth.getString("id");
+        String userId = responseCreateUser.getString("id");
 
         // LOGIN AS NEW USER
         Response responseCreateAuthNewUser = apiCoreRequests
@@ -162,12 +162,12 @@ public class UserEditTest extends BaseTestCase {
     public void testChangeUserEmailToInvalid() {
         //CREATE USER
         Map<String, String> newUserData = DataGenerator.getRegistrationData();
-        JsonPath responseCreateAuth = apiCoreRequests
+        JsonPath responseCreateUser = apiCoreRequests
                 .makePostRequestToCreateUser(
                         "https://playground.learnqa.ru/api/user/",
                         newUserData
                 );
-        String userId = responseCreateAuth.getString("id");
+        String userId = responseCreateUser.getString("id");
 
         //LOGIN AS NEW USER
         Response responseCreateAuthNewUser = apiCoreRequests
@@ -192,7 +192,7 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseEditNewUser, 400);
         Assertions.assertResponseTextEquals(responseEditNewUser, "Invalid email format");
 
-        //GET
+        //GET DATA TO CHECK
         Response responseUserData = apiCoreRequests
                 .makeGetRequest(
                         "https://playground.learnqa.ru/api/user/" + userId,
@@ -210,12 +210,12 @@ public class UserEditTest extends BaseTestCase {
     public void testChangeFirstNameToOneChar() {
         //CREATE USER
         Map<String, String> newUserData = DataGenerator.getRegistrationData();
-        JsonPath responseCreateAuth = apiCoreRequests
+        JsonPath responseCreateUser = apiCoreRequests
                 .makePostRequestToCreateUser(
                         "https://playground.learnqa.ru/api/user/",
                         newUserData
                 );
-        String userId = responseCreateAuth.getString("id");
+        String userId = responseCreateUser.getString("id");
 
         //LOGIN AS NEW USER
         Response responseCreateAuthNewUser = apiCoreRequests
@@ -240,7 +240,7 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseEditNewUser, 400);
         Assertions.assertResponseTextEquals(responseEditNewUser, "{\"error\":\"Too short value for field firstName\"}");
 
-        //GET
+        //GET DATA TO CHECK
         Response responseUserData = apiCoreRequests
                 .makeGetRequest(
                         "https://playground.learnqa.ru/api/user/" + userId,
