@@ -116,6 +116,7 @@ public class UserDeleteTest extends BaseTestCase {
     @DisplayName("Test negative, create user and delete it with another")
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("TL-53")
+    @Issue(value = "BTL-4627")
     public void testCreateNewUserThenDeleteItWithAnotherUser () {
         //CREATE NEW USER ONE
         Map<String, String> dataUserOne = DataGenerator.getRegistrationData();
